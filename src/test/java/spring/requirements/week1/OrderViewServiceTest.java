@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import spring.requirements.week1.model.UserRepository;
+import spring.requirements.week1.service.OrderViewService;
+import spring.requirements.week1.service.OrderViewService2;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -16,6 +18,7 @@ class OrderViewServiceTest {
 
     @Autowired
     private OrderViewService orderViewService;
+    private OrderViewService2 orderViewService2;
 
     @Autowired
     private UserRepository userRepository;
@@ -45,7 +48,7 @@ class OrderViewServiceTest {
         statistics.clear();
 
         try {
-            var result = orderViewService.getOrderList_2(userId);
+            var result = orderViewService2.getOrderList(userId);
             long queryCount = statistics.getPrepareStatementCount();
 
             result.forEach(detail ->
