@@ -28,6 +28,14 @@ public class OrderDetails {
                 .map(OrderItemDetail::new)
                 .collect(Collectors.toList());
     }
+    public OrderDetails(Order order, List<OrderItem> orderItems) {
+        this.orderNumber = order.getOrderNumber();
+        this.orderDate = order.getOrderDate();
+        this.status = order.getStatus();
+        this.orderItems = orderItems.stream()
+                .map(OrderItemDetail::new)
+                .collect(Collectors.toList());
+    }
 
     @Getter
     public static class OrderItemDetail {
