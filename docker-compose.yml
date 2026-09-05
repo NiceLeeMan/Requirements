@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: requirements-postgres
+    environment:
+      POSTGRES_DB: requirements
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    command: ["postgres", "-p", "5433"]
+    ports:
+      - "5433:5433"
+    volumes:
+      - requirements-postgres-data:/var/lib/postgresql/data
+
+volumes:
+  requirements-postgres-data:
