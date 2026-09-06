@@ -12,12 +12,11 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
     Optional<Order> findOrderById(int id);
 
+    @EntityGraph(attributePaths = {"orderItems"})
     List<Order> findByUserId(Long userId);
 
     @Query("SELECT DISTINCT o FROM Order o JOIN FETCH o.orderItems WHERE o.user.id = :userId")
     List<Order> findByUserIdWithItems(@Param("userId") Long userId);
 
-    @EntityGraph(attributePaths = {"orderItems"})
-    List<Order> findByUserId2(Long userId);
 
 }

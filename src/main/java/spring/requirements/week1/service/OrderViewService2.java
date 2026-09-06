@@ -62,6 +62,21 @@ public class OrderViewService2 {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Entity_Graph로 N+1을 해결한 코드
+     * */
+    @Transactional(readOnly = true)
+    public List<OrderDetails> getOrderListEntityGraph(Long userId) {
 
+        List<Order> orderList = orderRepository.findByUserId(userId);
+
+        return orderList.stream()
+                .map(OrderDetails::new)   // 원래 getOrderList와 똑같은 생성자
+                .collect(Collectors.toList());
+    }
+
+
+
+ //===================================HELPER METHOD===================================
 
 }
